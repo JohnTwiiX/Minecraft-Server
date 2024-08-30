@@ -9,13 +9,10 @@ RUN apt-get update && \
 
 ARG XUID=2535412521483302
 
-RUN chmod +x ./unzip_packages.sh
-
-RUN ./unzip_packages.sh
-
-RUN chmod +x ./update_server_config.sh
-
-RUN ./update_server_config.sh -u $XUID
+RUN chmod +x ./unzip_packages.sh && \
+    ./unzip_packages.sh && \
+    chmod +x ./update_server_config.sh && \
+    ./update_server_config.sh -u $XUID
 
 WORKDIR /app/Minecraft-Bedrock
 

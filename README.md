@@ -4,62 +4,40 @@ A simple Minecraft Server in a Docker Container.
 
 ## Requirements
 
-- unzip
+- Docker Compose
 
 ## Introduction
 
-### Java Edition
+I created two profiles with Docker Compose. These build a dedicated Bedrock and Java server.
 
-1. build a docker image
+### Build
 
-    ```bash
-    # go in folder Java-Server
-    cd Java-Server
+a. build and run a bedrock server
 
-    docker build -t <image-name>:<tag-name> . 
-    # -t Name and optionally a tag in the <image-name>:<image-tag> format
-    ```
+```bash
+docker compose --profile bedrock up -d
+```
 
-1. create a volume
+b. build and run a java server
 
-    ```bash
-    docker volume create <volume-name>
-    ```
+```bash
+docker compose --profile java up -d
+```
 
-1. start your docker container
+c. stop container
 
-    ```bash
-    docker run --name <container-name> \
-    -p 8888:25565 \
-    -v <volume>:/app/ \
-    --restart on-failure \
-    <image-name>:<image-tag>
-    ```
+```bash
+docker compose stop <container-name>
+```
 
-### Bedrock Edition
+d. delete container
 
-1. build a docker image
+```bash
+docker compose down <container-name>
+```
 
-    ```bash
-    # go in folder Java-Server
-    cd Bedrock-Server
+e. list all container
 
-    docker build -t <image-name>:<tag-name> . 
-    # -t Name and optionally a tag in the <image-name>:<image-tag> format
-    ```
-
-1. create a volume
-
-    ```bash
-    docker volume create <volume-name>
-    ```
-
-1. start your docker container
-
-    ```bash
-    docker run --name <container-name> \
-    -p 8888:19132/udp \
-    -v <volume>:/app/ \
-    --restart on-failure \
-    <image-name>:<image-tag>
-    ```
+```bash
+docker compose ps
+```

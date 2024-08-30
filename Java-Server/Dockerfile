@@ -10,8 +10,6 @@ RUN apt-get update && \
 # RUN java -Xmx1024M -Xms1024M -jar server.1.21.1.jar nogui
 RUN echo "eula=true" > eula.txt
 
-RUN sed -i 's/\bfalse\b/TRUE/' eula.txt
-
 EXPOSE 25565
 
 ENTRYPOINT ["java", "-Xmx1024M", "-Xms1024M", "-jar", "server.1.21.1.jar", "nogui"]
