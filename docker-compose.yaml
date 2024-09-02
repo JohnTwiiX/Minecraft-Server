@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  java-server:
+    build:
+      context: ./Java-Server
+    image: java-server:latest
+    container_name: java-server
+    ports:
+      - "8888:25565"
+    volumes:
+      - java-server-volume:/app
+    restart: on-failure
+    profiles:
+      - java
+
+  bedrock-server:
+    build:
+      context: ./Bedrock-Server
+    image: bedrock-server:latest
+    container_name: bedrock-server
+    ports:
+      - "8888:19132/udp"
+    volumes:
+      - bedrock-server-volume:/app
+    restart: on-failure
+    profiles:
+      - bedrock
+
+volumes:
+  java-server-volume:
+  bedrock-server-volume:
